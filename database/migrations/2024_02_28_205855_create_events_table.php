@@ -18,6 +18,8 @@ return new class extends Migration
              $table->date('start_date');
             $table->date('end_date');
              $table->string('address');
+             $table->decimal('ticekt_price_VIP' (8,2));
+             $table->decimal('ticekt_price_Regular' (8,2));
               $table->integer('num_tickets');
               $table->foreignId('location_id')->constarined();
               $table->string('image');
