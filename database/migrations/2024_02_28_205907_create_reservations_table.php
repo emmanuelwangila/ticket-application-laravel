@@ -9,11 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained()->cascadeOnDelete();
+            $table->enum('type', ['VIP', 'Regular']);
+            $table->integer('num_tickets');
             $table->timestamps();
+
+            // Add constraint for num_tickets: min 1, max 5
+            $table->check('num_tickets >= 1 and num_tickets <= 5');
         });
     }
 
