@@ -22,7 +22,7 @@ class Event extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('CreateEvent');
     }
 
     /**
@@ -30,7 +30,18 @@ class Event extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new event();
+        $data = array(
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'address' => $request->input('address'),
+            'image' => $request->input('image'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'num_tickets' => $request->input('num_tickets'),
+            'ticket_type_VIP' => $request->input('ticket_type_VIP'),
+             'ticket_type_Regular' => $request->input('ticket_type_Regular'),
+        );
     }
 
     /**

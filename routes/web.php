@@ -29,6 +29,8 @@ Route::get('/', function () {
 
 Route::get('/users', [Users::class, 'index'])->name('users');
 
+Route::post('/save', [Event::class, 'save']);
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

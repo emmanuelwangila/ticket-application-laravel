@@ -13,13 +13,10 @@ export default function createEvents({ auth }) {
         start_date: "",
         end_date: "",
         start_time: "",
-        end_time: "",
         ticket_id: "",
         num_tickets: "",
         ticket_price_VIP: "",
         ticket_price_Regular: "",
-        location_id: "",
-        user_id: "",
     });
 
     const handleChange = (e) => {
@@ -32,7 +29,17 @@ export default function createEvents({ auth }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can send formData to your Laravel backend using fetch or axios
+        Inertia.post("/save", [
+            title,
+            description,
+            address,
+            image,
+            start_date,
+            end_date,
+            num_ticekts,
+            ticket_price_Regular,
+            ticket_price_VIP,
+        ]);
         console.log(formData);
     };
 
