@@ -14,6 +14,13 @@ export default function Events({ auth, events }) {
         }
     };
 
+    const handleEdit = (eventId) => {
+        // Assuming you're using Inertia.js, you can navigate to the edit route like this
+        // Replace '/edit/' with the appropriate route for editing events in your application
+        // This will navigate to the edit page for the specific event
+        Inertia.visit(`/edit/${eventId}`);
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -91,12 +98,23 @@ export default function Events({ auth, events }) {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <button
-                                                        className="text-blue-500 mr-2"
-                                                        onClick={() => {
-                                                            // Handle edit action
-                                                        }}
+                                                        className={`text-blue-500 ${
+                                                            isDeleting ===
+                                                            event.id
+                                                                ? "opacity-50 cursor-not-allowed"
+                                                                : ""
+                                                        }`}
+                                                        onClick={() =>
+                                                            handleEdit(event.id)
+                                                        }
+                                                        disabled={
+                                                            isDeleting ===
+                                                            event.id
+                                                        }
                                                     >
-                                                        Edit
+                                                        {isDeleting === event.id
+                                                            ? "Editing..."
+                                                            : "Edit"}
                                                     </button>
                                                     <button
                                                         className={`text-red-500 ${
