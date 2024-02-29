@@ -31,7 +31,8 @@ export default function createEvents({ auth }) {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        Inertia.post("/save", formData)
+        const updatedFormData = { ...formData, user_id: auth.user.id };
+        Inertia.post("/save", updatedFormData)
             .then(() => {
                 console.log("Data posted successfully!");
                 // You can redirect or perform any other action upon successful submission

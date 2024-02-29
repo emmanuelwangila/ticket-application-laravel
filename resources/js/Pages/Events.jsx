@@ -2,7 +2,7 @@ import NavLink from "@/Components/NavLink";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
-export default function Events({ auth }) {
+export default function Events({ auth, events }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -20,6 +20,21 @@ export default function Events({ auth }) {
                 {" "}
                 Create New Event{" "}
             </NavLink>
+
+            <div className="bg-slate-200">
+                {events.map((event) => (
+                    <div key={event.id} className="">
+                        <div className=" text-blue-500 rounded-md">
+                            Name: {event.title}
+                        </div>
+                        <div className=" text-blue-500 rounded-md">
+                            Email: {event.description}
+                        </div>
+                        <div className=" rounded-md"></div>
+                    </div>
+                ))}
+            </div>
+
             <Head title="Events" />
 
             <div className="py-12">

@@ -12,11 +12,11 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+      public function index ()
     {
-        return Inertia::render('events')
-        ->middleware(['auth', 'verified'])->name('events');
-        //
+         $events = Event::all();
+        return Inertia::render('Events', ['events' => $events ]);
+
     }
 
     /**
@@ -38,6 +38,7 @@ class EventController extends Controller
             'description' => $request->input('description'),
             'address' => $request->input('address'),
             'image' => $request->input('image'),
+            'user_id' => $request->input('user_id'),
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
             'num_tickets' => $request->input('num_tickets'),

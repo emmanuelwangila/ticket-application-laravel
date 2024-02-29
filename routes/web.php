@@ -29,15 +29,17 @@ Route::get('/', function () {
 
 Route::get('/users', [Users::class, 'index'])->name('users');
 
+Route::get('/events', [EventController::class, 'index'])->name('events');
+
 Route::post('/save', [EventController::class, 'store'])->name('save');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/events', function(){
-    return Inertia::render('Events');
-})->middleware(['auth', 'verified'])->name('events');
+// Route::get('/events', function(){
+//     return Inertia::render('Events');
+// })->middleware(['auth', 'verified'])->name('events');
 
 Route::get('/createevents', function(){
     return Inertia::render('CreateEvents');
