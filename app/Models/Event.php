@@ -19,6 +19,7 @@ class Event extends Model
         'end_date',
         'start_time',
         'end_time',
+        'ticket_id',
         'num_tickets',
         'ticket_price_VIP',
         'ticket_price_Regular',
@@ -32,13 +33,18 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-     public function location() :BelongsTo
+     public function locations() :BelongsTo
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function event():BelongsTo
+    public function tickets():HasMany
     {
-        return $this->belongsTo(Event::class);
+        return $this->hasMany(Ticket::class);
+    }
+
+       public function tags():HasMany
+    {
+        return $this->hasMany(Tag::class);
     }
 }

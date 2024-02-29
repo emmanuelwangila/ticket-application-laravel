@@ -34,6 +34,11 @@ Route::get('/events', function(){
     return Inertia::render('Events');
 })->middleware(['auth', 'verified'])->name('events');
 
+Route::get('/createevents', function(){
+    return Inertia::render('CreateEvents');
+})->middleware(['auth', 'verified'])->name('createevents');
+
+
 
 
 Route::middleware('auth')->group(function () {
