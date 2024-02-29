@@ -10,15 +10,31 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'event_id',
+        'title',
+        'slug',
+        'description',
+        'address',
+        'image',
+        'start_date',
+        'end_date',
+        'start_time',
+        'end_time',
         'num_tickets',
-        'type', // Fixed typo here
+        'ticket_price_VIP',
+        'ticket_price_Regular',
+        'location_id',
+        'user_id',
+
     ];
 
     public function user() :BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+     public function location() :BelongsTo
+    {
+        return $this->belongsTo(Location::class);
     }
 
     public function event():BelongsTo

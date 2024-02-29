@@ -24,11 +24,11 @@ return new class extends Migration
             $table->decimal('ticket_price_Regular', 8, 2);
 
               $table->integer('num_tickets');
-              $table->foreignId('location_id')->constarined();
+              $table->foreignId('location_id')->constrained();
               $table->string('image');
+              $table->foreignId('ticekt_id')->constrained();
               $table->foreignId('user_id')->constrained()->cascadeOnDelete();
               $table->longText('description');
-            $table->string('name');
             $table->timestamps();
         });
     }
