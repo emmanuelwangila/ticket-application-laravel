@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Event;
+use Illuminate\Support\Facades\Session;
 
-class Event extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,6 +44,8 @@ class Event extends Controller
             'ticket_type_VIP' => $request->input('ticket_type_VIP'),
              'ticket_type_Regular' => $request->input('ticket_type_Regular'),
         );
+        $event ->create($data);
+        Session::flash('Sucess', 'Event Created Succesfully');
     }
 
     /**

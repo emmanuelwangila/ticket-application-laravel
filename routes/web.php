@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/users', [Users::class, 'index'])->name('users');
 
-Route::post('/save', [Event::class, 'save']);
+Route::post('/save', [EventController::class, 'store'])->name('save');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -1,5 +1,7 @@
 import NavLink from "@/Components/NavLink";
 import { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
+
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
@@ -26,21 +28,17 @@ export default function createEvents({ auth }) {
             [name]: value,
         }));
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        Inertia.post("/save", [
-            title,
-            description,
-            address,
-            image,
-            start_date,
-            end_date,
-            num_ticekts,
-            ticket_price_Regular,
-            ticket_price_VIP,
-        ]);
-        console.log(formData);
+        Inertia.post("/save", formData)
+            .then(() => {
+                console.log("Data posted successfully!");
+                // You can redirect or perform any other action upon successful submission
+            })
+            .catch((error) => {
+                console.error("Error posting data:", error);
+                // Handle error, show error message, etc.
+            });
     };
 
     return (
@@ -65,7 +63,7 @@ export default function createEvents({ auth }) {
                         onSubmit={handleSubmit}
                         className="bg-white rounded-md grid grid-cols-2 m-2 p-3   flex-col justify-center items-center "
                     >
-                        <label className="text-blue-500 font-bold m-1 p-2  ">
+                        <label className="text-blue-500 font-bold m-1 p-2">
                             Title:
                             <input
                                 type="text"
@@ -168,7 +166,6 @@ export default function createEvents({ auth }) {
                         <div className="flex justify-center items-center">
                             <button
                                 className="bg-blue-500 m-3 p-3 flex justify-center text-white font-bold rounded-md w-[70%] "
-                                onSubmit={handleSubmit}
                                 type="submit"
                             >
                                 Submit
