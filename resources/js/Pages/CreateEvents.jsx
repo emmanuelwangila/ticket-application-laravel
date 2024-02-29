@@ -75,19 +75,21 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
-                            Description:
+                        <label className="text-blue-500 font-bold ">
+                            Descri:
                             <textarea
                                 name="description"
+                                className="rounded-md m-1 p-2"
                                 value={formData.description}
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold">
                             Address:
                             <input
                                 type="text"
                                 name="address"
+                                className="rounded-md m-1 p-2 "
                                 value={formData.address}
                                 onChange={handleChange}
                             />
