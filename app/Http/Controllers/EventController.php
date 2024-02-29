@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Event;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class EventController extends Controller
@@ -49,6 +50,8 @@ class EventController extends Controller
         
         $event ->create($data);
         Session::flash('Sucess', 'Event Created Succesfully');
+
+        return Redirect::to('/events');
     }
 
     /**
