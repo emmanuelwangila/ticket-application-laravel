@@ -1,18 +1,15 @@
 const Users = ({ users }) => {
     return (
-        <div>
+        <div className="bg-slate-200">
             {users.map((user) => (
-                <div
-                    key={user.id}
-                    className="relative overflow-x-auto shadow-md sm:rounded-lg"
-                >
-                    <div className="bg-white text-gray-300 rounded-md">
+                <div key={user.id} className="">
+                    <div className=" text-blue-500 rounded-md">
                         Name: {user.name}
                     </div>
-                    <div className="bg-white text-gray-300 rounded-md">
+                    <div className=" text-blue-500 rounded-md">
                         Email: {user.email}
                     </div>
-                    <div className="bg-white rounded-md"></div>
+                    <div className=" rounded-md"></div>
                 </div>
             ))}
         </div>
