@@ -49,8 +49,11 @@ export default function createEvents({ auth }) {
             <Head title="Create-Events" />
 
             <div className="p-2 min-h-screen ">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    Create your events
+                <div className="max-w-7xl  mx-auto sm:px-6 lg:px-8">
+                    <div className="text-teal-600 border  text-3xl font-sans flex justify-center items-center">
+                        {" "}
+                        Create your events{" "}
+                    </div>
                     <form
                         onSubmit={handleSubmit}
                         className="bg-white rounded-md grid grid-cols-2 m-2 p-3   flex-col justify-center items-center "
@@ -97,7 +100,7 @@ export default function createEvents({ auth }) {
                         <label className="text-blue-500 font-bold m-1 p-2 ">
                             Image:
                             <input
-                                type="text"
+                                type="file"
                                 className="m-1 p-2 rounded-md "
                                 name="image"
                                 value={formData.image}
@@ -124,15 +127,7 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
-                            Ticket ID:
-                            <input
-                                type="text"
-                                name="ticket_id"
-                                value={formData.ticket_id}
-                                onChange={handleChange}
-                            />
-                        </label>
+
                         <label className="text-blue-500 font-bold">
                             Number of Tickets:
                             <input
@@ -163,25 +158,15 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
-                            Location ID:
-                            <input
-                                type="text"
-                                name="location_id"
-                                value={formData.location_id}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <label>
-                            User ID:
-                            <input
-                                type="text"
-                                name="user_id"
-                                value={formData.user_id}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <button type="submit">Submit</button>
+                        <div className="flex justify-center items-center">
+                            <button
+                                className="bg-blue-500 m-3 p-3 flex justify-center text-white font-bold rounded-md w-[70%] "
+                                onSubmit={handleSubmit}
+                                type="submit"
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
