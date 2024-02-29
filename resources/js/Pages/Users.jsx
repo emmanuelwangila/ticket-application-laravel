@@ -7,7 +7,7 @@ const Users = ({ users, auth }) => {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-teal-600 font-sans leading-tight">
-                    Events
+                    Users
                 </h2>
             }
         >
