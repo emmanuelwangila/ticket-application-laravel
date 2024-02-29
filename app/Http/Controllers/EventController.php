@@ -39,7 +39,9 @@ class EventController extends Controller
     'description' => $request->input('description'),
     'address' => $request->input('address'),
     'image' => $request->input('image'),
-    'type' => $request->input('type'), // Assuming the select input name is 'type'
+    'type' => $request->input('type', ), // Default to 'Regular' if no value is provided
+
+    // Assuming the select input name is 'type'
     'user_id' => $request->input('user_id'),
     'start_date' => $request->input('start_date'),
     'end_date' => $request->input('end_date'),

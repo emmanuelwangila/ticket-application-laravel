@@ -18,6 +18,7 @@ class Event extends Model
         'end_date',
         // 'ticket_id',
         'num_tickets',
+        'type',
         'ticket_price_VIP',
         'ticket_price_Regular',
         // 'location_id',
