@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Add constraint for num_tickets: min 1, max 5
-            $table->check('num_tickets >= 1 and num_tickets <= 5');
+            // $table->check('num_tickets >= 1 and num_tickets <= 5');
         });
     }
 

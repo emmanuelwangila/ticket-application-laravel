@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('event_id')->constrained()->cascadeOnDelete();
             $table->enum('ticket_type', ['VIP', 'Regular']);
             $table->integer('num_tickets');
-            $table->decimal('ticket price'(8,2));
+            $table->decimal('ticket price', 8,2 );
             $table->timestamps();
         });
     }
