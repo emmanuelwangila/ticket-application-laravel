@@ -18,6 +18,8 @@ return new class extends Migration
              $table->date('start_date');
             $table->date('end_date');
              $table->string('address');
+             $table->time('start_time');
+             $table->time('end_time');
             $table->decimal('ticket_price_VIP', 8, 2);
             $table->decimal('ticket_price_Regular', 8, 2);
 
