@@ -1,17 +1,28 @@
 import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import NavLink from "@/Components/NavLink";
-
 import { Inertia } from "@inertiajs/inertia";
 
-export default function Edit({ auth, events }) {
-    const [isDeleting, setIsDeleting] = useState(null);
+export default function Edit({ auth, event }) {
+    const [formData, setFormData] = useState({
+        name: event.name,
+        description: event.description,
+        type: event.type,
+        address: event.address,
+    });
 
-    const handleDelete = (eventId) => {
-        if (confirm("Are you sure you want to delete this event?")) {
-            setIsDeleting(eventId);
-            Inertia.delete(route("events.delete", { event: eventId }));
-        }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Send the updated event data to the server
+        Inertia.post(route("events.update", { event: event.id }), formData);
     };
 
     return (
@@ -19,113 +30,70 @@ export default function Edit({ auth, events }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-teal-600 font-sans leading-tight">
-                    Events
+                    Edit Event
                 </h2>
             }
         >
             <div className="bg-gray-300 min-h-screen">
                 <div className="container mx-auto px-4 sm:px-8">
-                    <div className="py-8 bg-gray-300  ">
-                        <h2 className="text-2xl text-teal-600 font-semibold leading-tight">
-                            Events ({events.length})
-                        </h2>
-
-                        <NavLink
-                            href={route("createevents")}
-                            active={route().current("createevents")}
-                            className="text-white font-bold m-3 "
-                        >
-                            <div className="bg-blue-500 rounded-md m-1 p-3 text-white w-[80%] h-[40%] ">
-                                Create a New Event
+                    <div className="py-8 bg-gray-300">
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2">
+                                    Event Name
+                                </label>
+                                <input
+                                    type="text"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
                             </div>
-                        </NavLink>
-
-                        <div className="my-2 flex sm:flex-row flex-col">
-                            {/* Add search and pagination controls here */}
-                        </div>
-                        <div className="-mx-4 sm:-mx-8  px-4 sm:px-8 py-4 overflow-x-auto">
-                            <div className="inline-block min-w-full shadow rounded-md  overflow-hidden">
-                                <table className="min-w-full leading-normal">
-                                    <thead>
-                                        <tr>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Event Name
-                                            </th>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Ticket Type
-                                            </th>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Event Address
-                                            </th>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Actions
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {events.map((event) => (
-                                            <tr key={event.id}>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <div className="flex items-center">
-                                                        <div className="flex-shrink-0 w-10 h-10"></div>
-                                                        <div className="ml-3">
-                                                            <p className="text-blue-500 whitespace-no-wrap">
-                                                                {event.name}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p className="text-blue-500 whitespace-no-wrap">
-                                                        {event.description}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p className="text-gray-900 whitespace-no-wrap">
-                                                        {event.type}
-                                                    </p>
-                                                </td>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    {event.address}
-                                                </td>
-                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <button
-                                                        className="text-blue-500 mr-2"
-                                                        onClick={() => {
-                                                            // Handle edit action
-                                                        }}
-                                                    >
-                                                        Edit
-                                                    </button>
-                                                    <button
-                                                        className={`text-red-500 ${
-                                                            isDeleting ===
-                                                            event.id
-                                                                ? "opacity-50 cursor-not-allowed"
-                                                                : ""
-                                                        }`}
-                                                        onClick={() =>
-                                                            handleDelete(
-                                                                event.id
-                                                            )
-                                                        }
-                                                        disabled={
-                                                            isDeleting ===
-                                                            event.id
-                                                        }
-                                                    >
-                                                        {isDeleting === event.id
-                                                            ? "Deleting..."
-                                                            : "Delete"}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2">
+                                    Description
+                                </label>
+                                <textarea
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                ></textarea>
                             </div>
-                        </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2">
+                                    Ticket Type
+                                </label>
+                                <input
+                                    type="text"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="type"
+                                    value={formData.type}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2">
+                                    Event Address
+                                </label>
+                                <input
+                                    type="text"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <button
+                                    type="submit"
+                                    className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
