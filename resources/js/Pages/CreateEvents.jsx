@@ -94,19 +94,21 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold m-1 p-2 ">
                             Image:
                             <input
                                 type="text"
+                                className="m-1 p-2 rounded-md "
                                 name="image"
                                 value={formData.image}
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold">
                             Start Date:
                             <input
                                 type="date"
+                                className="m-1 p-2 rounded-md "
                                 name="start_date"
                                 value={formData.start_date}
                                 onChange={handleChange}
