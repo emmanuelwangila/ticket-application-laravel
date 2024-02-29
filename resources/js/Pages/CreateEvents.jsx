@@ -16,6 +16,7 @@ export default function createEvents({ auth }) {
         end_date: "",
         start_time: "",
         ticket_id: "",
+        user_id: "",
         num_tickets: "",
         ticket_price_VIP: "",
         ticket_price_Regular: "",

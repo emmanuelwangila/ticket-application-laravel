@@ -41,9 +41,11 @@ class EventController extends Controller
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
             'num_tickets' => $request->input('num_tickets'),
-            'ticket_type_VIP' => $request->input('ticket_type_VIP'),
-             'ticket_type_Regular' => $request->input('ticket_type_Regular'),
+            'ticket_price_VIP' => $request->input('ticket_price_VIP'),
+             'ticket_price_Regular' => $request->input('ticket_price_Regular'),
         );
+
+        
         $event ->create($data);
         Session::flash('Sucess', 'Event Created Succesfully');
     }

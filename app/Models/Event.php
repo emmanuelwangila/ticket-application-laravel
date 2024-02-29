@@ -11,19 +11,16 @@ class Event extends Model
 
     protected $fillable = [
         'title',
-        'slug',
         'description',
         'address',
         'image',
         'start_date',
         'end_date',
-        'start_time',
-        'end_time',
-        'ticket_id',
+        // 'ticket_id',
         'num_tickets',
         'ticket_price_VIP',
         'ticket_price_Regular',
-        'location_id',
+        // 'location_id',
         'user_id',
 
     ];
