@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class Event extends Controller
 {
@@ -11,6 +12,8 @@ class Event extends Controller
      */
     public function index()
     {
+        return Inertia::render('events')
+        ->middleware(['auth', 'verified'])->name('events');
         //
     }
 
