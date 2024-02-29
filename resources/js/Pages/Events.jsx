@@ -1,8 +1,19 @@
-import NavLink from "@/Components/NavLink";
+import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import NavLink from "@/Components/NavLink";
+
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Events({ auth, events }) {
+    const [isDeleting, setIsDeleting] = useState(null);
+
+    const handleDelete = (eventId) => {
+        if (confirm("Are you sure you want to delete this event?")) {
+            setIsDeleting(eventId);
+            Inertia.delete(route("events.delete", { event: eventId }));
+        }
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -14,8 +25,8 @@ export default function Events({ auth, events }) {
         >
             <div className="bg-gray-300 min-h-screen">
                 <div className="container mx-auto px-4 sm:px-8">
-                    <div className="py-8 bg-gray-300">
-                        <h2 className="text-2xl font-semibold leading-tight">
+                    <div className="py-8 bg-gray-300  ">
+                        <h2 className="text-2xl text-teal-600 font-semibold leading-tight">
                             Events ({events.length})
                         </h2>
 
@@ -33,19 +44,22 @@ export default function Events({ auth, events }) {
                             {/* Add search and pagination controls here */}
                         </div>
                         <div className="-mx-4 sm:-mx-8  px-4 sm:px-8 py-4 overflow-x-auto">
-                            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <div className="inline-block min-w-full shadow rounded-md  overflow-hidden">
                                 <table className="min-w-full leading-normal">
                                     <thead>
                                         <tr>
+                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 Event Name
                                             </th>
-                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Created at
+                                                Ticket Type
                                             </th>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Email
+                                                Event Address
+                                            </th>
+                                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                Actions
                                             </th>
                                         </tr>
                                     </thead>
@@ -54,30 +68,7 @@ export default function Events({ auth, events }) {
                                             <tr key={event.id}>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="flex-shrink-0 w-10 h-10">
-                                                            <svg
-                                                                className="w-full h-full rounded-full"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeWidth="2"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                            >
-                                                                <circle
-                                                                    cx="12"
-                                                                    cy="12"
-                                                                    r="10"
-                                                                ></circle>
-                                                                <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
-                                                                <circle
-                                                                    cx="12"
-                                                                    cy="12"
-                                                                    r="3"
-                                                                ></circle>
-                                                            </svg>
-                                                        </div>
+                                                        <div className="flex-shrink-0 w-10 h-10"></div>
                                                         <div className="ml-3">
                                                             <p className="text-blue-500 whitespace-no-wrap">
                                                                 {event.name}
@@ -92,11 +83,42 @@ export default function Events({ auth, events }) {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <p className="text-gray-900 whitespace-no-wrap">
-                                                        {event.created_at}
+                                                        {event.type}
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     {event.address}
+                                                </td>
+                                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                    <button
+                                                        className="text-blue-500 mr-2"
+                                                        onClick={() => {
+                                                            // Handle edit action
+                                                        }}
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        className={`text-red-500 ${
+                                                            isDeleting ===
+                                                            event.id
+                                                                ? "opacity-50 cursor-not-allowed"
+                                                                : ""
+                                                        }`}
+                                                        onClick={() =>
+                                                            handleDelete(
+                                                                event.id
+                                                            )
+                                                        }
+                                                        disabled={
+                                                            isDeleting ===
+                                                            event.id
+                                                        }
+                                                    >
+                                                        {isDeleting === event.id
+                                                            ? "Deleting..."
+                                                            : "Delete"}
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}

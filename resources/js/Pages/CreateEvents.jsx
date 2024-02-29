@@ -16,6 +16,7 @@ export default function createEvents({ auth }) {
         end_date: "",
         start_time: "",
         ticket_id: "",
+        type: "",
         user_id: "",
         num_tickets: "",
         ticket_price_VIP: "",
@@ -76,14 +77,16 @@ export default function createEvents({ auth }) {
                             />
                         </label>
                         <label className="text-blue-500 font-bolld m-2 ">
-                            Slug:
-                            <input
-                                type="text"
+                            Type:
+                            <select
                                 className="rounded-md m-2 p-1"
-                                name="slug"
-                                value={formData.slug}
+                                name="type"
+                                value={formData.type}
                                 onChange={handleChange}
-                            />
+                            >
+                                <option value="VIP">VIP</option>
+                                <option value="Regular">Regular</option>
+                            </select>
                         </label>
                         <label className="text-blue-500 font-bold ">
                             Descri:
@@ -136,7 +139,7 @@ export default function createEvents({ auth }) {
                         </label>
 
                         <label className="text-blue-500 font-bold">
-                            Number of Tickets:
+                            Max number of attendees:
                             <input
                                 type="number"
                                 className="m-1 p-2 rounded-md "

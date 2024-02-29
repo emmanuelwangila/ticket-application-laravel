@@ -34,18 +34,19 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $event = new event();
-        $data = array(
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'address' => $request->input('address'),
-            'image' => $request->input('image'),
-            'user_id' => $request->input('user_id'),
-            'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date'),
-            'num_tickets' => $request->input('num_tickets'),
-            'ticket_price_VIP' => $request->input('ticket_price_VIP'),
-             'ticket_price_Regular' => $request->input('ticket_price_Regular'),
-        );
+      $data = array(
+    'title' => $request->input('title'),
+    'description' => $request->input('description'),
+    'address' => $request->input('address'),
+    'image' => $request->input('image'),
+    'type' => $request->input('type'), // Assuming the select input name is 'type'
+    'user_id' => $request->input('user_id'),
+    'start_date' => $request->input('start_date'),
+    'end_date' => $request->input('end_date'),
+    'num_tickets' => $request->input('num_tickets'),
+    'ticket_price_VIP' => $request->input('ticket_price_VIP'),
+    'ticket_price_Regular' => $request->input('ticket_price_Regular'),
+);
 
         
         $event ->create($data);
