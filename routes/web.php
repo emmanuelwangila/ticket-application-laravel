@@ -33,6 +33,8 @@ Route::get('/events', [EventController::class, 'index'])->name('events');
 
 Route::post('/save', [EventController::class, 'store'])->name('save');
 
+Route::get('/edit/:id', [EventController::class, 'edit'])->name('edit');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
