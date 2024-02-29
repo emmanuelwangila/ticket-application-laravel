@@ -114,30 +114,13 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold">
                             End Date:
                             <input
                                 type="date"
+                                className="m-1 p-2 rounded-md "
                                 name="end_date"
                                 value={formData.end_date}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <label>
-                            Start Time:
-                            <input
-                                type="time"
-                                name="start_time"
-                                value={formData.start_time}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <label>
-                            End Time:
-                            <input
-                                type="time"
-                                name="end_time"
-                                value={formData.end_time}
                                 onChange={handleChange}
                             />
                         </label>
@@ -150,28 +133,31 @@ export default function createEvents({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold">
                             Number of Tickets:
                             <input
                                 type="number"
+                                className="m-1 p-2 rounded-md "
                                 name="num_tickets"
                                 value={formData.num_tickets}
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold ">
                             Ticket Price VIP:
                             <input
                                 type="number"
+                                className="m-1 p-2 rounded-md "
                                 name="ticket_price_VIP"
                                 value={formData.ticket_price_VIP}
                                 onChange={handleChange}
                             />
                         </label>
-                        <label>
+                        <label className="text-blue-500 font-bold ">
                             Ticket Price Regular:
                             <input
                                 type="number"
+                                className="m-1 p-2 rounded-md"
                                 name="ticket_price_Regular"
                                 value={formData.ticket_price_Regular}
                                 onChange={handleChange}
