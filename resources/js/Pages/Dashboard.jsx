@@ -20,7 +20,6 @@ export default function Dashboard({ auth, events, users }) {
                         ADMIN DASHBOARD
                     </h2>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {/* Card 1: Total Users */}
                         <NavLink
                             href={route("events")}
                             active={route().current("events")}
@@ -53,7 +52,6 @@ export default function Dashboard({ auth, events, users }) {
                             </div>
                         </NavLink>
 
-                        {/* Card 2: Total Revenue */}
                         <NavLink
                             href={route("users")}
                             active={route().current("users")}
