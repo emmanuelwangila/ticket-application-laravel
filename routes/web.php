@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Users;
 use App\Http\Controllers\EventController;
-use     App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,6 +31,8 @@ Route::get('/', function () {
 Route::get('/users', [Users::class, 'index'])->name('users');
 
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
+
+Route::post('/saved', [ReservationController::class, 'store'])->name('saved');
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 

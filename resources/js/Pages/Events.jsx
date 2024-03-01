@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import NavLink from "@/Components/NavLink";
+// import CreateReservations from "./CreateReservations";
 
 import { Inertia } from "@inertiajs/inertia";
 
@@ -30,6 +31,7 @@ export default function Events({ auth, events }) {
                 </h2>
             }
         >
+            {/* <CreateReservations auth={auth} events={events} /> */}
             <div className="bg-gray-300 min-h-screen">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="py-8 bg-gray-300  ">

@@ -1,19 +1,17 @@
 import NavLink from "@/Components/NavLink";
 import { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
+import Events from "./Events";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 export default function createReservations({ auth }) {
     const [formData, setFormData] = useState({
-        title: "",
-        ticket_id: "",
+        event_id: "",
         type: "VIP",
         user_id: "",
         num_tickets: "",
-        ticket_price_VIP: "",
-        ticket_price_Regular: "",
     });
 
     const handleChange = (e) => {
@@ -26,7 +24,7 @@ export default function createReservations({ auth }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const updatedFormData = { ...formData, user_id: auth.user.id };
-        Inertia.post("/save", updatedFormData)
+        Inertia.post("/saved", updatedFormData)
             .then(() => {
                 console.log("Data posted successfully!");
                 // You can redirect or perform any other action upon successful submission
@@ -47,7 +45,7 @@ export default function createReservations({ auth }) {
                 {" "}
                 Back to Dashboard{" "}
             </NavLink>
-            <Head title="Create-Events" />
+            <Head title="Create-Reservations" />
 
             <div className="p-2 min-h-screen ">
                 <div className="max-w-7xl  mx-auto sm:px-6 lg:px-8">
@@ -69,8 +67,26 @@ export default function createReservations({ auth }) {
                                 onChange={handleChange}
                             />
                         </label>
+
+                        {/* <label className="text-blue-500 font-bold">
+                            Select Event:
+                            <select
+                                className="rounded-md m-2 p-1"
+                                name="event_id"
+                                value={formData.event_id}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select an Event</option>
+                                {events.map((event) => (
+                                    <option key={event.id} value={event.id}>
+                                        {event.title}
+                                    </option>
+                                ))}
+                            </select>
+                        </label> */}
+
                         <label className="text-blue-500 font-bolld m-2 ">
-                            Type:
+                            Ticket Type:
                             <select
                                 id="ticket"
                                 className="rounded-md m-2 p-1"
