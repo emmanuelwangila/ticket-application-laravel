@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Users;
 use App\Http\Controllers\EventController;
+use     App\Http\Controllers\ReservationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,8 @@ Route::get('/', function () {
 
 Route::get('/users', [Users::class, 'index'])->name('users');
 
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
+
 Route::get('/events', [EventController::class, 'index'])->name('events');
 
 Route::post('/save', [EventController::class, 'store'])->name('save');
@@ -52,6 +55,10 @@ Route::get('/dashboard', function () {
 Route::get('/createevents', function(){
     return Inertia::render('CreateEvents');
 })->middleware(['auth', 'verified'])->name('createevents');
+
+Route::get('/createrservations', function(){
+    return Inertia::render('CreateReservations');
+})->middleware(['auth', 'verified'])->name('createreservations');
 
 
 

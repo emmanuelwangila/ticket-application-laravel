@@ -43,6 +43,13 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Users
                                 </NavLink>
+                                <NavLink
+                                    href={route("reservations")}
+                                    active={route().current("rsers")}
+                                    className="text-white font-bold "
+                                >
+                                    Reservations
+                                </NavLink>
                             </div>
                         </div>
 
