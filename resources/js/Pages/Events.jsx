@@ -10,7 +10,7 @@ export default function Events({ auth, events }) {
     const handleDelete = (eventId) => {
         if (confirm("Are you sure you want to delete this event?")) {
             setIsDeleting(eventId);
-            Inertia.delete(`/delete/${eventId}`);
+            Inertia.get(`/delete/${eventId}`);
         }
     };
 

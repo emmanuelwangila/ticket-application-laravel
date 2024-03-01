@@ -107,5 +107,6 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
         Session::flash('Success', 'Event has been deleted Succesfully');
+        return Redirect::to('/');
     }
 }
