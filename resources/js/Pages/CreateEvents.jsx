@@ -36,11 +36,9 @@ export default function createEvents({ auth }) {
         Inertia.post("/save", updatedFormData)
             .then(() => {
                 console.log("Data posted successfully!");
-                // You can redirect or perform any other action upon successful submission
             })
             .catch((error) => {
                 console.error("Error posting data:", error);
-                // Handle error, show error message, etc.
             });
     };
 
