@@ -100,9 +100,11 @@ export default function createReservations({ auth }) {
                         </label>
 
                         <label className="text-blue-500 font-bold">
-                            Max number of attendees:
+                            Number of Tickets:
                             <input
                                 type="number"
+                                min={1}
+                                max={5}
                                 className="m-1 p-2 rounded-md "
                                 name="num_tickets"
                                 value={formData.num_tickets}
