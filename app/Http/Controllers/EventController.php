@@ -104,6 +104,8 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->delete();
+        Session::flash('Success', 'Event has been deleted Succesfully');
     }
 }

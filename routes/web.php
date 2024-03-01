@@ -36,6 +36,8 @@ Route::post('/save', [EventController::class, 'store'])->name('save');
 Route::get('/edit/{id}', [EventController::class, 'edit'])->name('edit');
 Route::post('/update/{id}',[EventController::class, 'update'])->name('update');
 
+Route::delete('/delete/{id}', [EventController::class, 'destroy'])->name('destroy');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

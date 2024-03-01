@@ -10,7 +10,7 @@ export default function Events({ auth, events }) {
     const handleDelete = (eventId) => {
         if (confirm("Are you sure you want to delete this event?")) {
             setIsDeleting(eventId);
-            Inertia.delete(route("events.delete", { event: eventId }));
+            Inertia.delete(`/delete/${eventId}`);
         }
     };
 
@@ -57,7 +57,7 @@ export default function Events({ auth, events }) {
                                         <tr>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Event Name
+                                                Event Description
                                             </th>
                                             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 Ticket Type
@@ -77,9 +77,7 @@ export default function Events({ auth, events }) {
                                                     <div className="flex items-center">
                                                         <div className="flex-shrink-0 w-10 h-10"></div>
                                                         <div className="ml-3">
-                                                            <p className="text-blue-500 whitespace-no-wrap">
-                                                                {event.name}
-                                                            </p>
+                                                            <p className="text-blue-500 whitespace-no-wrap"></p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -98,7 +96,7 @@ export default function Events({ auth, events }) {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <button
-                                                        className={`text-blue-500 ${
+                                                        className={`text-white bg-green-500 m-1 p-3 rounded-md  ${
                                                             isDeleting ===
                                                             event.id
                                                                 ? "opacity-50 cursor-not-allowed"
@@ -117,7 +115,7 @@ export default function Events({ auth, events }) {
                                                             : "Edit"}
                                                     </button>
                                                     <button
-                                                        className={`text-red-500 ${
+                                                        className={`text-white border m-1 p-2 rounded-md  bg-red-500  ${
                                                             isDeleting ===
                                                             event.id
                                                                 ? "opacity-50 cursor-not-allowed"
