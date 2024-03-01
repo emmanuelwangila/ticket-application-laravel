@@ -78,7 +78,24 @@ class EventController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
+
+
     {
+        $event = Event::findOrFail($id);
+    
+    // Update event properties
+    $event->title = $request->input('title');
+    $event->type = $request->input('type');
+    $event->address = $request->input('address');
+    $event->description = $request->input('description');
+
+    // Save the changes
+    $event->save();
+
+    // You may return a response indicating success
+    return response()->json(['message' => 'Event updated successfully']);
+
+
         //
     }
 

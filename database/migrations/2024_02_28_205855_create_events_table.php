@@ -17,7 +17,7 @@ return new class extends Migration
              $table->date('start_date');
             $table->date('end_date');
              $table->string('address');
-             $table->enum('type',['VIP ', 'Regular']);
+             $table->string('type',['VIP ', 'Regular']);
             $table->integer('ticket_price_VIP');
             $table->integer('ticket_price_Regular');
 

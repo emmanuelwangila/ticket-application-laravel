@@ -1,11 +1,10 @@
 import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import NavLink from "@/Components/NavLink";
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Edit({ auth, event }) {
     const [formData, setFormData] = useState({
-        name: event.name,
+        title: event.title,
         description: event.description,
         type: event.type,
         address: event.address,
@@ -22,7 +21,7 @@ export default function Edit({ auth, event }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Send the updated event data to the server
-        Inertia.post(route("events.update", { event: event.id }), formData);
+        Inertia.post(route("update", { id: event.id }), formData);
     };
 
     return (
@@ -45,8 +44,8 @@ export default function Edit({ auth, event }) {
                                 <input
                                     type="text"
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="name"
-                                    value={formData.name}
+                                    name="title" // Corrected name to "title"
+                                    value={formData.title}
                                     onChange={handleChange}
                                 />
                             </div>
