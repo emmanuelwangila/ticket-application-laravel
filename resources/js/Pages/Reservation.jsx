@@ -39,8 +39,8 @@ export default function Reservations({ auth, reservations }) {
                         </h2>
 
                         <NavLink
-                            href={route("createevents")}
-                            active={route().current("createevents")}
+                            href={route("createreservations")}
+                            active={route().current("createreservations")}
                             className="text-white font-bold m-3"
                         >
                             <div className="bg-blue-500 rounded-md m-1 p-3 text-white w-[80%] h-[40%]">
