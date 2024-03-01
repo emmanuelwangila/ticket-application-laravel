@@ -36,7 +36,10 @@ export default function Events({ auth, events }) {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="py-8 bg-gray-300  ">
                         <h2 className="text-2xl text-teal-600 font-semibold leading-tight">
-                            Events ({events.length})
+                            EVENTS{" "}
+                            <span className="text-blue-500 font-bold ">
+                                [{events.length}]
+                            </span>
                         </h2>
 
                         <NavLink

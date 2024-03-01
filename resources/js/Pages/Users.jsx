@@ -14,8 +14,12 @@ const Users = ({ users, auth }) => {
             <div className="bg-gray-300 min-h-screen">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="py-8 bg-gray-300">
-                        <h2 className="text-2xl font-semibold leading-tight">
-                            Users ({users.length})
+                        <h2 className="text-2xl uppercase text-teal-600 font-semibold leading-tight">
+                            Users{" "}
+                            <span className="text-blue-500 ">
+                                {" "}
+                                [{users.length}]{" "}
+                            </span>
                         </h2>
                         <div className="my-2 flex sm:flex-row flex-col">
                             {/* Add search and pagination controls here */}
