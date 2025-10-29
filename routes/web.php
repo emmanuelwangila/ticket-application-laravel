@@ -34,6 +34,8 @@ Route::get('/reservations', [ReservationController::class, 'index'])->name('rese
 
 Route::post('/saved', [ReservationController::class, 'store'])->name('saved');
 
+Route::get('/editreservation/{id}', [ReservationController::class, 'edit'])->name('editreservation');
+
 Route::get('/events', [EventController::class, 'index'])->name('events');
 
 Route::post('/save', [EventController::class, 'store'])->name('save');
